@@ -21,10 +21,9 @@ class PDF extends FPDF
         $this->Cell(15, 10, "Fecha", 1, 0, 'C', 0);
         $this->Cell(50, 10, "Articulo", 1, 0, 'C', 0);
         $this->Cell(20, 10, "Valor Total", 1, 0, 'C', 0);
-        $this->Cell(15, 10, "Area", 1, 0, 'C', 0);
-        $this->Cell(23, 10, "Proveedor", 1, 0, 'C', 0);
-        $this->Cell(75, 10, "Detalles", 1, 1, 'C', 0);
-
+        $this->Cell(25, 10, "Centro de Costo", 1, 0, 'C', 0);
+        $this->Cell(23, 10, "Proveedor", 1, 1, 'C', 0);
+        /*  $this->Cell(75, 10, "Detalles", 1, 1, 'C', 0); */
     }
 
     // Pie de página
@@ -49,13 +48,13 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 7);
 
-while ($row = $resultado -> fetch_assoc()) {
+while ($row = $resultado->fetch_assoc()) {
     $pdf->Cell(15, 10, $row['fecha'], 1, 0, 'C', 0);
     $pdf->Cell(50, 10, $row['articulo'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $row['valor_total'], 1, 0, 'C', 0);
-    $pdf->Cell(15, 10, $row['area'], 1, 0, 'C', 0);
-    $pdf->Cell(23, 10,  utf8_decode($row['proveedor']), 1, 0, 'C', 0);
-    $pdf->Cell(75, 10,  utf8_decode($row['detalles']), 1, 1, 'C', 0);
+    $pdf->Cell(25, 10, $row['centro_costo'], 1, 0, 'C', 0);
+    $pdf->Cell(23, 10,  utf8_decode($row['proveedor']), 1, 1, 'C', 0);
+    /*  $pdf->Cell(75, 10,  utf8_decode($row['detalles']), 1, 1, 'C', 0); */
 }
 
 

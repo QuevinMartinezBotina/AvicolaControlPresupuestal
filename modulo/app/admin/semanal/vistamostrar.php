@@ -118,9 +118,9 @@
               "<td class=' pt-4 p-1'>" . $usuario["fecha"] . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["articulo"] . "</td>" .
               "<td class=' pt-4 p-1'>" . number_format($usuario["valor_total"], 2, ",", ".") . "</td>" .
-              "<td class=' pt-4 p-1'>" . $usuario["area"] . "</td>" .
+              "<td class=' pt-4 p-1'>" . $usuario["centro_costo"] . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["proveedor"] . "</td>" .
-              "<td class=' pt-4 p-1'>" . $usuario["detalles"] . "</td>" .
+              /* "<td class=' pt-4 p-1'>" . $usuario["detalles"] . "</td>" . */
 
 
 
@@ -136,13 +136,13 @@
             /*Para acumular lo de logistica*/
 
 
-            if (substr($usuario["area"], 0, 3) == "npl" | substr($usuario["area"], 0, 3) == "NPL561") {
+            if (substr($usuario["centro_costo"], 0, 3) == "npl" | substr($usuario["centro_costo"], 0, 3) == "NPL561") {
 
               $acumuladorlogistica += $usuario["valor_total"];
               $_SESSION["logisticatotal"] = $acumuladorlogistica;
             }
-            /* para acumular lo de planta */  
-            if (substr($usuario["area"], 0, 3) == "NPP" | substr($usuario["area"], 0, 3) == "NPP") {
+            /* para acumular lo de planta */
+            if (substr($usuario["centro_costo"], 0, 3) == "NPP" | substr($usuario["centro_costo"], 0, 3) == "NPP") {
 
               $acumuladorplanta += $usuario["valor_total"];
               $_SESSION["plantatotal"] = $acumuladorplanta;
