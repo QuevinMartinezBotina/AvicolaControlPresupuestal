@@ -1,0 +1,32 @@
+CREATE DATA BASE controlpresupuestal ;
+
+CREATE table usuario(
+    usuario_empleado varchar(25)NOT NULL,
+    contra_empleado varchar(255)NOT NULL,
+    nivel_acceso varchar(1) NOT NULL,
+    primary key(usuario_empleado)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+create table mantenimiento(
+    id int(5) AUTO_INCREMENT not null,
+    fecha date not null,
+    articulo varchar(100) not null,
+    valor_total varchar(50) not null,
+    area varchar (24) not null,
+    proveedor varchar(100) not null,
+    detalles varchar(200),
+    PRIMARY key (id)
+    
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+create table presupuesto(
+    centro_costo varchar(5) not null,
+    presupuesto int(20) not null,
+    PRIMARY key (centro_costo)
+    
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
