@@ -113,7 +113,6 @@
 
                     foreach ($presupuestos as $presupuesto) {
 
-                        
 
                         if (substr($presupuesto["centro_costo"], 0, 3) == "NPP" | substr($presupuesto["centro_costo"], 0, 3) == "npp") {
 

@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     $mensaje = "Campo Vacio";
                 } else {
 
-                    $mensaje = $dao->actualizar($id, $fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles);
+                    $mensaje = $dao->actualizar($id, $fecha, $articulo, $valor_total, strtoupper($centro_costo), $proveedor, $detalles);
                 }
             }
         } else if ($_POST['boton'] == 'limpiar') {

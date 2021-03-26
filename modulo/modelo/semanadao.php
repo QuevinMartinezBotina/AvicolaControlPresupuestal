@@ -171,6 +171,25 @@ class semanaDao extends Conexion
     return $mensaje;
   } // fin del metodo eliminarUsuario
 
+  public function EliminarTodo()
+  {
+    $mensaje = "";
+    try {
+
+      $conexion = Conexion::conectar();
+      $sql = "DELETE from mantenimiento ;";
+      $stmt = $conexion->prepare($sql);
+      $stmt->execute();
+      $mensaje = "Eliminó con Exito";
+    } // fin del try
+
+    catch (PDOException $e) {
+      $mensaje = "Problemas al Eliminar consulte con el administrador";
+    } // fin del catch
+
+    return $mensaje;
+  } // fin del metodo eliminarUsuario
+
 
   /*  public function eliminarUsuarios()
   {

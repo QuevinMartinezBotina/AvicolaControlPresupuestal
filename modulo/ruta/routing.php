@@ -17,6 +17,9 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == "eliminar") {
 
         require_once "eliminar.php";
+    } elseif ($_GET['action'] == "eliminarTodo") {
+
+        require_once "EliminarTodo.php";
     } elseif ($_GET['action'] == "actualizar") {
 
         require_once "actualizar.php";

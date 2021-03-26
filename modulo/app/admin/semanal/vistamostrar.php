@@ -73,9 +73,10 @@
 
 <body>
 
-  <div class="container-fluid px-md-3 ">
+  <div class="container-fluid px-md-3 mb-5">
 
     <?php
+
 
     if ($tam == 0) {
       echo "<br><p><strong>No se encontro registro de cargos!!</strong></p>";
@@ -86,11 +87,16 @@
 
       <br>
       <div class="row">
-        <a href="../../excel.php" class="btn btn-success p-1 col-md-2 shadow-sm m-1">Generar Excel</a>
-        <a href="../../pdf.php" class="btn btn-danger p-1 col-md-2 shadow-sm m-1">Generar PDF</a>
+        <a href="../../excel.php" class="btn btn-success p-1 col-md-2 shadow-sm m-1"><i class="fas fa-file-excel fa-2x"> </i> Generar Excel</a>
+        <a href="../../pdf.php" class="btn btn-danger p-1 col-md-2 shadow-sm m-1"><i class="fas fa-file-pdf fa-2x"> </i> Generar PDF</a>
+        <a href="?action=eliminarTodo" class="btn btn-danger p-1 col-md-2 shadow-sm m-1" onclick='javascript:return asegurarTodo();'> <i class='fas fa-trash-alt fa-2x'></i> Eliminar Todo</a> </td>
+        </a>
+
+
+
 
       </div>
-      <table class="table table-striped py-3 table-hover table-borderless mb-4 pb-5" id="tabla">
+      <table class="table table-striped py-3 table-hover table-borderless " id="tabla">
 
         <thead class="thead-dark ">
           <th class="py-3 p-1">ID</th>
@@ -127,7 +133,7 @@
               "<td><a href='?action=actualizar&objeto=" . base64_encode(serialize($usuario)) .
               "' class='btn btn-warning p-1 my-3'><i class='fas fa-retweet'></i>  Actualizar</a>   &nbsp;&nbsp;" .
               "<a href='?action=eliminar&id=" . base64_encode($usuario["id"]) .
-              "' class='btn btn-danger p-1 my-3'  onclick='javascript:return asegurar();'><i class='fas fa-trash'></i> Eliminar</a></td>" .
+              "' class='btn btn-danger p-1 my-3'  onclick='javascript:return asegurar();'><i class='fas fa-trash-alt '></i> Eliminar</a></td>" .
               "</tr>";
             $cont++;
 
@@ -147,6 +153,7 @@
               $acumuladorplanta += $usuario["valor_total"];
               $_SESSION["plantatotal"] = $acumuladorplanta;
             }
+            $_global['holi'] = "holi";
           }
 
           ?>
@@ -167,6 +174,11 @@
     function asegurar() {
       rc = confirm("¿Seguro que desea Eliminar?");
       return rc;
+    }
+
+    function asegurarTodo() {
+      rt = confirm("¿Seguro que desea eliminar todos los registros?");
+      return rt;
     }
 
 

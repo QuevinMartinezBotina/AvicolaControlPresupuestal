@@ -27,7 +27,7 @@ if (isset($_POST['boton'])) {
             } else {
 
 
-                $mensaje = $dao->insertar($fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles);
+                $mensaje = $dao->insertar($fecha, $articulo, $valor_total,  strtoupper($centro_costo), $proveedor, $detalles);
             }
         }
     } else if ($_POST['boton'] == 'limpiar') {
