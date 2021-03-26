@@ -82,7 +82,7 @@
                 <div class="row mb-3 border p-3">
 
                     <div class="col-12 my-3">
-                        <h3 class="text-center">Recibido</h3>
+                        <h3 class="text-center">Gastos actuales</h3>
                     </div>
 
                     <div class="col-md-5 mr-1 ">
@@ -155,6 +155,42 @@
                         <p>Adobo: <?php echo number_format($_SESSION["presupuestoAdobo"], 2, ",", "."); ?></p>
 
                     </dvi>
+                </div>
+
+                <div class="row border  mb-5 p-3">
+                    <div class="col-md-12">
+                        <h3 class="text-center mb-4">Control de Presupuesto</h3>
+                    </div>
+
+                    <dvi class="col-md-4">
+
+
+                        <p>Planta: <?php
+                                    $controlPresupuestoPlanta = $_SESSION["presupuestoPlanta"] - $_SESSION["plantatotal"];
+                                    echo number_format($controlPresupuestoPlanta, 2, ",", "."); ?></p>
+
+                    </dvi>
+
+                    <dvi class="col-md-4">
+
+
+                        <p>Logistica: <?php
+                                        $controlPresupuestoPlanta = $_SESSION["presupuestoLogistica"] - $_SESSION["logisticatotal"];
+                                        echo number_format($controlPresupuestoPlanta, 2, ",", "."); ?></p>
+
+                    </dvi>
+
+                    <dvi class="col-md-4">
+
+                        <p>Adobo: <?php
+                                    $controlPresupuestoAdobo = $_SESSION["presupuestoAdobo"] - $_SESSION["adobototal"];
+                                    echo number_format($controlPresupuestoAdobo, 2, ",", "."); ?></p>
+
+
+
+                    </dvi>
+
+
                 </div>
             </div>
 

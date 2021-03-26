@@ -117,6 +117,7 @@
           $acumuladorplanta = 0;
           $_SESSION["plantatotal"] = 0;
           $_SESSION["logisticatotal"] = 0;
+          $_SESSION["adobototal"] = 0;
 
           foreach ($usuarios as $usuario) {
             echo "<tr >" .
@@ -153,6 +154,14 @@
               $acumuladorplanta += $usuario["valor_total"];
               $_SESSION["plantatotal"] = $acumuladorplanta;
             }
+
+            /* para acumular lo de adobo */
+            if (substr($usuario["centro_costo"], 0, 3) == "NPA" | substr($usuario["centro_costo"], 0, 3) == "npa") {
+
+              $acumuladoradobo += $usuario["valor_total"];
+              $_SESSION["adobototal"] = $acumuladoradobo;
+            }
+
             $_global['holi'] = "holi";
           }
 
