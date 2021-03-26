@@ -120,7 +120,7 @@
               "<td class=' pt-4 p-1'>" . number_format($usuario["valor_total"], 2, ",", ".") . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["centro_costo"] . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["proveedor"] . "</td>" .
-              /* "<td class=' pt-4 p-1'>" . $usuario["detalles"] . "</td>" . */
+              "<td class=' pt-4 p-1'>" . $usuario["detalles"] . "</td>" .
 
 
 

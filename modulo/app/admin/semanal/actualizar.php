@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $fecha = $usuario['fecha'];
     $articulo = $usuario['articulo'];
     $valor_total = $usuario['valor_total'];
-    $area = $usuario['area'];
+    $centro_costo = $usuario['centro_costo'];
     $proveedor = $usuario['proveedor'];
     $detalles = $usuario['detalles'];
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
             if (
-                isset($_POST['fecha']) & isset($_POST['articulo']) & isset($_POST['valor_total']) & isset($_POST['area']) & isset($_POST['proveedor'])
+                isset($_POST['fecha']) & isset($_POST['articulo']) & isset($_POST['valor_total']) & isset($_POST['centro_costo']) & isset($_POST['proveedor'])
                 & isset($_POST['detalles'])
             ) {
 
@@ -32,16 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $fecha = htmlspecialchars($_POST['fecha']);
                 $articulo = htmlspecialchars($_POST['articulo']);
                 $valor_total = htmlspecialchars($_POST['valor_total']);
-                $area = htmlspecialchars($_POST['area']);
+                $centro_costo = htmlspecialchars($_POST['centro_costo']);
                 $proveedor = htmlspecialchars($_POST['proveedor']);
                 $detalles = htmlspecialchars($_POST['detalles']);
 
 
-                if (empty($fecha) | empty($articulo) | empty($valor_total) | empty($area) | empty($proveedor) | empty($detalles)) {
+                if (empty($fecha) | empty($articulo) | empty($valor_total) | empty($centro_costo) | empty($proveedor) | empty($detalles)) {
                     $mensaje = "Campo Vacio";
                 } else {
 
-                    $mensaje = $dao->actualizar($id, $fecha, $articulo, $valor_total, $area, $proveedor, $detalles);
+                    $mensaje = $dao->actualizar($id, $fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles);
                 }
             }
         } else if ($_POST['boton'] == 'limpiar') {

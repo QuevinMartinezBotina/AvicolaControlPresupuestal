@@ -29,7 +29,6 @@ header("Content-Disposition: attachment; filename= reporte.xls");
             <td><?php echo $fila[4]; ?></td>
             <td><?php echo $fila[5]; ?></td>
             <td><?php echo $fila[6]; ?></td>
-            <td><?php echo utf8_decode($fila[4]); ?></td>
 
         </tr>
 

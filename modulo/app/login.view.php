@@ -2,12 +2,12 @@
 <html>
 
 <head>
-	<title>Login Softlithe</title>
+	<title>Control Presupuestal</title>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.vista.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<!-- Icono -->
-	<link rel="icon" href="../../img/icono.ico" type="image/png" />
+	<link rel="icon" href="../../img/logoAvicampo.ico" type="image/png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -65,9 +65,9 @@
 				<input type="submit" class="btn" value="Ingresar">
 
 				<div class="login-content" style="width: 100px; margin-left:40%;">
-				   <p class="texto-registrate">
+					<p class="texto-registrate">
 						<a href="control.registro.usuarios.php" class="txt-startSesion">Registrarme</a>
-					</p> 
+					</p>
 				</div>
 
 			</form>

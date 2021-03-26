@@ -22,6 +22,7 @@
 
                 <form action="?action=guardar" method="post" class="container contenedor-guardar-usuarios  pl-md-5 pt-md-4">
 
+
                     <div class="row">
                         <div class="col-md-11 ">
 
@@ -37,6 +38,10 @@
 
                         </div>
 
+
+
+
+
                         <div class="col-md-2 ">
 
                             <label>Fecha</label>
@@ -45,7 +50,7 @@
                                                                                                 } ?>">
                         </div>
 
-                        <div class="col-md-5 mx-md-2">
+                        <div class="col-md-4 mx-md-2">
 
                             <label>Articulo </label>
                             <input type="text" name="articulo" class="form-control p-1" value="<?php if (isset($articulo)) {
@@ -53,7 +58,7 @@
                                                                                                 } ?>">
                         </div>
 
-                        <div class="col-md-4 ">
+                        <div class="col-md-3 ">
 
                             <label>Valor Total </label>
                             <input type="number" name="valor_total" class="form-control p-1" value="<?php if (isset($valor_total)) {
@@ -68,10 +73,10 @@
 
                         <div class="col-md-7 mr-md-2 ">
 
-                            <label>Area</label>
-                            <input type="text" name="area" class="form-control  p-1" value="<?php if (isset($area)) {
-                                                                                                echo $area;
-                                                                                            } ?>">
+                            <label>Centro de Costo</label>
+                            <input type="text" name="centro_costo" class="form-control  p-1" value="<?php if (isset($centro_costo)) {
+                                                                                                        echo $centro_costo;
+                                                                                                    } ?>">
                             </input>
                         </div>
 
@@ -95,7 +100,6 @@
 
 
                     </div>
-
 
                     <br>
                     <center>

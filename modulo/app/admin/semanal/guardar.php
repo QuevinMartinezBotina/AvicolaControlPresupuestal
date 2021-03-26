@@ -7,14 +7,14 @@ if (isset($_POST['boton'])) {
 
 
         if (
-            isset($_POST['fecha']) & isset($_POST['articulo'])  & isset($_POST['valor_total'])  & isset($_POST['area'])  & isset($_POST['proveedor'])
+            isset($_POST['fecha']) & isset($_POST['articulo'])  & isset($_POST['valor_total'])  & isset($_POST['centro_costo'])  & isset($_POST['proveedor'])
             & isset($_POST['detalles'])
         ) {
 
             $fecha = htmlspecialchars($_POST['fecha']);
             $articulo = htmlspecialchars($_POST['articulo']);
             $valor_total = htmlspecialchars($_POST['valor_total']);
-            $area = htmlspecialchars($_POST['area']);
+            $centro_costo = htmlspecialchars($_POST['centro_costo']);
             $proveedor = htmlspecialchars($_POST['proveedor']);
             $detalles = htmlspecialchars($_POST['detalles']);
 
@@ -22,12 +22,12 @@ if (isset($_POST['boton'])) {
 
 
 
-            if (empty($fecha) | empty($articulo) | empty($valor_total) | empty($area) | empty($proveedor) | empty($detalles)) {
+            if (empty($fecha) | empty($articulo) | empty($valor_total) | empty($centro_costo) | empty($proveedor) | empty($detalles)) {
                 $mensaje = "Campo Vacio";
             } else {
 
 
-                $mensaje = $dao->insertar($fecha, $articulo, $valor_total, $area, $proveedor, $detalles);
+                $mensaje = $dao->insertar($fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles);
             }
         }
     } else if ($_POST['boton'] == 'limpiar') {
@@ -36,7 +36,7 @@ if (isset($_POST['boton'])) {
         $fecha = "";
         $articulo = "";
         $valor_total = "";
-        $area = "";
+        $centro_costo = "";
         $proveedor = "";
         $detalles = "";
     }

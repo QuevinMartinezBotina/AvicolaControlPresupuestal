@@ -22,7 +22,7 @@ if (isset($_GET['action'])) {
         require_once "actualizar.php";
     } elseif ($_GET['action'] == "inicio") {
 
-        require_once "bienvenida.php";
+        require_once "mostrar.php";
     } elseif ($_GET['action'] == "ventas") {
 
         require_once "mostrarventas.php";
@@ -32,5 +32,5 @@ if (isset($_GET['action'])) {
     }
 } else {
 
-    require_once "bienvenida.php"; //aqui podes poner una bienvenida o un login
+    require_once "mostrar.php"; //aqui podes poner una bienvenida o un login
 }

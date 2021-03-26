@@ -41,8 +41,8 @@
 
                         <label>ID</label>
                         <input type="number" name="id" class="form-control p-1 id " readonly value="<?php if (isset($id)) {
-                                                                                                       echo $id;
-                                                                                                       /*  echo $id; */
+                                                                                                        echo $id;
+                                                                                                        /*  echo $id; */
                                                                                                     } ?>">
                     </div>
 
@@ -67,7 +67,7 @@
 
                         <label>Valor Total </label>
                         <input type="number" name="valor_total" class="form-control p-1" value="<?php if (isset($valor_total)) {
-                                                                                                     echo $valor_total  ;
+                                                                                                    echo $valor_total;
                                                                                                 } ?>">
                     </div>
 
@@ -78,10 +78,10 @@
 
                     <div class="col-md-7 mr-md-2 ">
 
-                        <label>Area</label>
-                        <input type="text" name="area" class="form-control  p-1" value="<?php if (isset($area)) {
-                                                                                            echo $area;
-                                                                                        } ?>">
+                        <label>Centro de Costo</label>
+                        <input type="text" name="centro_costo" class="form-control  p-1" value="<?php if (isset($centro_costo)) {
+                                                                                                    echo $centro_costo;
+                                                                                                } ?>">
                         </input>
                     </div>
 

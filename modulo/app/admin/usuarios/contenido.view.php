@@ -11,10 +11,10 @@
 
 
     <!-- Icono -->
-    <link rel="icon" href="../../../../img/icono.ico" type="image/png" />
+    <link rel="icon" href="../../../../img/logoAvicampo.ico" type="image/png" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Softlithe</title>
+    <title>Control Presupuestal</title>
 </head>
 
 <body>
@@ -61,7 +61,7 @@
 
                                 <a class=" nav-link p-3 " href="../semanal/semanal.php"><i class="fas fa-briefcase icono"></i> Mantenimiento</a>
 
-                               
+
                             </div>
                         </div>
 
@@ -96,7 +96,7 @@
                                     <div class="col-md-8  text-center align-self-center">
                                         <h1 class="my-3">Sistema de control semanal de gastos</h1>
                                         <p class="mt-2">Sistema desarrollado para llevar en control de gastos semanal
-                                        en la empresa Avicola el Madroño</p>
+                                            en la empresa Avicola el Madroño</p>
                                     </div>
                                 </div>
 

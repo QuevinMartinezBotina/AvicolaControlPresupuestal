@@ -9,20 +9,20 @@ class semanaDao extends Conexion
 
   /* -----------INSERTAR UNA SEMANA-------------- */
 
-  public function insertar($fecha, $articulo, $valor_total, $area, $proveedor, $detalles)
+  public function insertar($fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles)
   {
     $mensaje = "";
     try {
       $conexion = Conexion::conectar();
-      $sql = "INSERT INTO mantenimiento(id, fecha ,articulo, valor_total, area,proveedor, detalles) 
-      VALUES (NULL, :fecha ,:articulo, :valor_total, :area, :proveedor, :detalles);";
+      $sql = "INSERT INTO mantenimiento(id, fecha ,articulo, valor_total, centro_costo,proveedor, detalles) 
+      VALUES (NULL, :fecha ,:articulo, :valor_total, :centro_costo, :proveedor, :detalles);";
 
       $stmt = $conexion->prepare($sql);
 
       $stmt->bindParam(":fecha", $fecha);
       $stmt->bindParam(":articulo", $articulo);
       $stmt->bindParam(":valor_total", $valor_total);
-      $stmt->bindParam(":area", $area);
+      $stmt->bindParam(":centro_costo", $centro_costo);
       $stmt->bindParam(":proveedor", $proveedor);
       $stmt->bindParam(":detalles", $detalles);
 
@@ -116,14 +116,14 @@ class semanaDao extends Conexion
 
 
   /* ---------------ACTUALIZAR UN SEMANA-------------------------- */
-  public function actualizar($id, $fecha, $articulo, $valor_total, $area, $proveedor, $detalles)
+  public function actualizar($id, $fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles)
   {
 
     $mensaje = "";
     try {
 
       $conexion = Conexion::conectar();
-      $sql = "UPDATE mantenimiento SET fecha=:fecha, articulo=:articulo, valor_total=:valor_total, area=:area, proveedor=:proveedor, detalles=:detalles
+      $sql = "UPDATE mantenimiento SET fecha=:fecha, articulo=:articulo, valor_total=:valor_total, centro_costo=:centro_costo, proveedor=:proveedor, detalles=:detalles
        where id=:id ;";
       $stmt = $conexion->prepare($sql);
 
@@ -131,7 +131,7 @@ class semanaDao extends Conexion
       $stmt->bindParam(":fecha", $fecha);
       $stmt->bindParam(":articulo", $articulo);
       $stmt->bindParam(":valor_total", $valor_total);
-      $stmt->bindParam(":area", $area);
+      $stmt->bindParam(":centro_costo", $centro_costo);
       $stmt->bindParam(":proveedor", $proveedor);
       $stmt->bindParam(":detalles", $detalles);
 

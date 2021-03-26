@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="../../../../css/estilos.usuarios.css">
 
     <!-- Icono -->
-    <link rel="icon" href="../../../../img/icono.ico" type="image/png" />
+    <link rel="icon" href="../../../../img/logoAvicampo.ico" type="image/png" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Cargos</title>
+    <title>Mantenimiento</title>
 </head>
 
 <body>
@@ -36,11 +36,9 @@
 
                     </div>
 
-                    <div class="col-md-2  ">
-                    <p class="shadown ">Logistica: <?php echo number_format($_SESSION["logisticatotal"], 2, ",", "."); ?></p>
-                    </div>
 
-                    <div class="col-7 d-flex justify-content-end ml-1">
+
+                    <div class="col-10 d-flex justify-content-end ml-1">
                         <a href="../../cerrar.php" class="d-flex align-self-center">Cerrar Sesión</a>
                     </div>
                 </div>
@@ -86,7 +84,7 @@
                         <div class="tab-pane fade show active texto	" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                             <div class="row">
                                 <div class="col-12">
-                                    <h1 class="text-center texto-usuarios p-2">Registro Semanal Mantenimiento</h1>
+                                    <h1 class="text-center texto-usuarios p-2">Mantenimiento</h1>
                                     <!-- ***OPCIONES DENTRO DE Inventario (CRUD)** -->
 
                                     <div>
