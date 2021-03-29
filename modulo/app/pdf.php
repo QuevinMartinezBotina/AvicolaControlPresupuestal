@@ -39,7 +39,10 @@ class PDF extends FPDF
 }
 
 require '../../helper/conexion-pdf.php';
-$consulta = "SELECT * FROM mantenimiento";
+$consulta = "SELECT mantenimiento.id, mantenimiento.fecha, mantenimiento.articulo, mantenimiento.valor_total, 
+    centro_costo.centro_costo, mantenimiento.proveedor, mantenimiento.detalles 
+    from mantenimiento inner join centro_costo on centro_costo.id = mantenimiento.centro_costo ;";
+
 $resultado = $mysqli->query($consulta);
 
 

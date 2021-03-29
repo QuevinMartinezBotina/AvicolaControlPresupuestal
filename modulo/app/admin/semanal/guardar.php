@@ -17,6 +17,7 @@ if (isset($_POST['boton'])) {
             $centro_costo = htmlspecialchars($_POST['centro_costo']);
             $proveedor = htmlspecialchars($_POST['proveedor']);
             $detalles = htmlspecialchars($_POST['detalles']);
+            ucfirst:
 
 
 
@@ -27,7 +28,7 @@ if (isset($_POST['boton'])) {
             } else {
 
 
-                $mensaje = $dao->insertar($fecha, $articulo, $valor_total,  $centro_costo, $proveedor, $detalles);
+                $mensaje = $dao->insertar($fecha, ucfirst($articulo), $valor_total,  strtoupper($centro_costo), ucfirst($proveedor), ucfirst($detalles));
             }
         }
     } else if ($_POST['boton'] == 'limpiar') {

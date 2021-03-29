@@ -11,9 +11,15 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == "mostrarCcosto") {
 
         require_once "mostrarCcosto.php";
+    } elseif ($_GET['action'] == "mostrarPresupuesto") {
+
+        require_once "mostrarPresupuesto.php";
     } elseif ($_GET['action'] == "guardarpresupuesto") {
 
         require_once "bienvenida.php";
+    } elseif ($_GET['action'] == "guardarPresupuesto") {
+
+        require_once "guardarPresupuesto.php";
     } elseif ($_GET['action'] == "guardarCcosto") {
 
         require_once "guardarCcosto.php";
@@ -32,9 +38,6 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == "inicio") {
 
         require_once "mostrar.php";
-    } elseif ($_GET['action'] == "ventas") {
-
-        require_once "mostrarventas.php";
     } else {
 
         require_once "page404.php";

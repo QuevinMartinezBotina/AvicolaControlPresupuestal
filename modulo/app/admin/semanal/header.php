@@ -17,6 +17,14 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link  bordes p-3
+      <?php
+      if ($action == "mostrarPresupuesto") echo "active";
+      ?>
+      " href="?action=mostrarPresupuesto">Lista Presupuesto</a>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link bordes p-3
       <?php
       if ($action == "guardarpresupuesto") echo "active";
@@ -40,6 +48,16 @@
       if ($action == "guardarCcosto") echo "active";
       ?> 
       " href="?action=guardarCcosto">Agregar Centro de Costo</a>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link bordes p-3
+      
+      <?php
+      if ($action == "guardarPresupuesto") echo "active";
+      ?> 
+      " href="?action=guardarPresupuesto">Agregar Presupuesto</a>
     </li>
   </ul>
 </div>

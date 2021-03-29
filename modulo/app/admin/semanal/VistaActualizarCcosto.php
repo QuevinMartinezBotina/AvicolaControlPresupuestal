@@ -39,9 +39,9 @@
                     <div class="col-md-2">
 
                         <label>ID</label>
-                        <input type="number" name="id" class="form-control p-1 " placeholder="Ejempo NPP" value="<?php if (isset($id)) {
-                                                                                                                        echo $id;
-                                                                                                                    } ?>">
+                        <input type="number" name="id" class="form-control p-1 " placeholder="Ejempo NPP" readonly value="<?php if (isset($id)) {
+                                                                                                                                echo $id;
+                                                                                                                            } ?>">
                     </div>
 
                     <div class="col-md-4 mx-2">

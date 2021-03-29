@@ -39,3 +39,5 @@ create table presupuesto(
     FOREIGN KEY(centro_costo) REFERENCES centro_costo(id) ON UPDATE CASCADE ON DELETE CASCADE    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+

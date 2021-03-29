@@ -16,7 +16,11 @@ header("Content-Disposition: attachment; filename= reporte.xls");
     <?php
 
     include("../../helper/conexion-excel.php");
-    $sql = "SELECT * FROM mantenimiento";
+
+    $sql = "SELECT mantenimiento.id, mantenimiento.fecha, mantenimiento.articulo, mantenimiento.valor_total, 
+    centro_costo.centro_costo, mantenimiento.proveedor, mantenimiento.detalles
+     from mantenimiento inner join centro_costo on centro_costo.id = mantenimiento.centro_costo ;";
+
     $ejecutar = mysqli_query($conexion, $sql);
     while ($fila = mysqli_fetch_array($ejecutar)) {
 

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
             if (
-                isset($_POST['fecha']) & isset($_POST['articulo']) & isset($_POST['valor_total']) & isset($_POST['centro_costo']) & isset($_POST['proveedor'])
+                isset($_POST['fecha']) & isset($_POST['articulo']) & isset($_POST['valor_total']) & isset($_POST['proveedor'])
                 & isset($_POST['detalles'])
             ) {
 
@@ -37,11 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $detalles = htmlspecialchars($_POST['detalles']);
 
 
-                if (empty($fecha) | empty($articulo) | empty($valor_total) | empty($centro_costo) | empty($proveedor) | empty($detalles)) {
+                if (empty($fecha) | empty($articulo) | empty($valor_total) | empty($proveedor) | empty($detalles)) {
                     $mensaje = "Campo Vacio";
                 } else {
 
-                    $mensaje = $dao->actualizar($id, $fecha, $articulo, $valor_total, strtoupper($centro_costo), $proveedor, $detalles);
+                    $mensaje = $dao->actualizar($id, $fecha, $articulo, $valor_total, $proveedor, $detalles);
                 }
             }
         } else if ($_POST['boton'] == 'limpiar') {

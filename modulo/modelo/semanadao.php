@@ -46,15 +46,16 @@ class semanaDao extends Conexion
 
   /* -----------INSERTAR UN presupuesto-------------- */
 
-  public function insertarPresupuesto($centro_costo, $presupuesto)
+  public function insertarPresupuesto($fecha, $centro_costo, $presupuesto)
   {
     $mensaje = "";
     try {
       $conexion = Conexion::conectar();
-      $sql = "INSERT INTO presupuesto(centro_costo, presupuesto) VALUES ( :centro_costo , :presupuesto);";
+      $sql = "INSERT INTO presupuesto(fecha, centro_costo, presupuesto) VALUES ( :fecha ,:centro_costo , :presupuesto);";
 
       $stmt = $conexion->prepare($sql);
 
+      $stmt->bindParam(":fecha", $fecha);
       $stmt->bindParam(":centro_costo", $centro_costo);
       $stmt->bindParam(":presupuesto", $presupuesto);
 
@@ -140,7 +141,8 @@ class semanaDao extends Conexion
   public function listaPresupuesto()
   {
     $conexion = Conexion::conectar();
-    $sql = "SELECT * FROM presupuesto order by  centro_costo asc;";
+    $sql = "SELECT presupuesto.fecha, centro_costo.centro_costo, presupuesto.presupuesto  FROM presupuesto
+    inner join centro_costo on centro_costo.id = presupuesto.centro_costo ;";
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -149,29 +151,16 @@ class semanaDao extends Conexion
   }
 
 
-  /*   public function listausuario($numid)
-  {
-    $conexion = Conexion::conectar();
-    $sql = "SELECT * FROM usuario where numid=:numid order by numid asc;";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(":numid", $numid);
-    $stmt->execute();
-    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = null;
-    return $array;
-  } */
-
-
 
   /* ---------------ACTUALIZAR UN SEMANA-------------------------- */
-  public function actualizar($id, $fecha, $articulo, $valor_total, $centro_costo, $proveedor, $detalles)
+  public function actualizar($id, $fecha, $articulo, $valor_total, $proveedor, $detalles)
   {
 
     $mensaje = "";
     try {
 
       $conexion = Conexion::conectar();
-      $sql = "UPDATE mantenimiento SET fecha=:fecha, articulo=:articulo, valor_total=:valor_total, centro_costo=:centro_costo, proveedor=:proveedor, detalles=:detalles
+      $sql = "UPDATE mantenimiento SET fecha=:fecha, articulo=:articulo, valor_total=:valor_total, proveedor=:proveedor, detalles=:detalles
        where id=:id ;";
       $stmt = $conexion->prepare($sql);
 
@@ -179,7 +168,6 @@ class semanaDao extends Conexion
       $stmt->bindParam(":fecha", $fecha);
       $stmt->bindParam(":articulo", $articulo);
       $stmt->bindParam(":valor_total", $valor_total);
-      $stmt->bindParam(":centro_costo", $centro_costo);
       $stmt->bindParam(":proveedor", $proveedor);
       $stmt->bindParam(":detalles", $detalles);
 
