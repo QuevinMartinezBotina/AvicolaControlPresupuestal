@@ -79,9 +79,9 @@
                     <div class="col-md-7 mr-md-2 ">
 
                         <label>Centro de Costo</label>
-                        <input type="text" name="centro_costo" class="form-control  p-1" value="<?php if (isset($centro_costo)) {
-                                                                                                    echo $centro_costo;
-                                                                                                } ?>">
+                        <input type="text" name="centro_costo" class="form-control  p-1" readonly value="<?php if (isset($centro_costo)) {
+                                                                                                                echo $centro_costo;
+                                                                                                            } ?>">
                         </input>
                     </div>
 

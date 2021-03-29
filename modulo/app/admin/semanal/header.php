@@ -9,6 +9,14 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link  bordes p-3
+      <?php
+      if ($action == "mostrarCcosto") echo "active";
+      ?>
+      " href="?action=mostrarCcosto">Lista Centros de Costo</a>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link bordes p-3
       <?php
       if ($action == "guardarpresupuesto") echo "active";
@@ -22,7 +30,16 @@
       <?php
       if ($action == "guardar") echo "active";
       ?> 
-      " href="?action=guardar">Agregar</a>
+      " href="?action=guardar">Agregar Gasto</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link bordes p-3
+      
+      <?php
+      if ($action == "guardarCcosto") echo "active";
+      ?> 
+      " href="?action=guardarCcosto">Agregar Centro de Costo</a>
     </li>
   </ul>
 </div>

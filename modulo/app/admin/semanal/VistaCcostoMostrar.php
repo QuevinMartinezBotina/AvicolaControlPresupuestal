@@ -87,12 +87,6 @@
 
       <br>
       <div class="row">
-        <a href="../../excel.php" class="btn btn-success p-1 col-md-2 shadow-sm m-1"><i class="fas fa-file-excel fa-2x"> </i> Generar Excel</a>
-        <a href="../../pdf.php" class="btn btn-danger p-1 col-md-2 shadow-sm m-1"><i class="fas fa-file-pdf fa-2x"> </i> Generar PDF</a>
-        <a href="?action=eliminarTodo" class="btn btn-danger p-1 col-md-2 shadow-sm m-1" onclick='javascript:return asegurarTodo();'> <i class='fas fa-trash-alt fa-2x'></i> Eliminar Todo</a> </td>
-        </a>
-
-
 
 
       </div>
@@ -100,12 +94,8 @@
 
         <thead class="thead-dark ">
           <th class="py-3 p-1">ID</th>
-          <th class="py-3 p-1">Fecha </th>
-          <th class="py-3 p-1">Articulo</th>
-          <th class="py-3 p-1">Valor Total</th>
-          <th class="py-3 p-1">Centro de Costo</th>
-          <th class="py-3 p-1">Proovedor</th>
-          <th class="py-3 p-1">Detalles</th>
+          <th class="py-3 p-1">Centro Costo</th>
+          <th class="py-3 p-1">Nombre Centro de Costo </th>
           <th class="py-3 p-1">Acción</th>
 
         </thead>
@@ -113,56 +103,18 @@
           <?php
           $cont = 1;
 
-          $acumuladorlogistica = 0;
-          $acumuladorplanta = 0;
-          $_SESSION["plantatotal"] = 0;
-          $_SESSION["logisticatotal"] = 0;
-          $_SESSION["adobototal"] = 0;
 
           foreach ($usuarios as $usuario) {
             echo "<tr >" .
               "<td class=' pt-4 p-1'>" . $usuario["id"] . "</td>" .
-              "<td class=' pt-4 p-1'>" . $usuario["fecha"] . "</td>" .
-              "<td class=' pt-4 p-1'>" . $usuario["articulo"] . "</td>" .
-              "<td class=' pt-4 p-1'>" . number_format($usuario["valor_total"], 2, ",", ".") . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["centro_costo"] . "</td>" .
-              "<td class=' pt-4 p-1'>" . $usuario["proveedor"] . "</td>" .
-              "<td class=' pt-4 p-1'>" . $usuario["detalles"] . "</td>" .
+              "<td class=' pt-4 p-1'>" . $usuario["nom_ccosto"] . "</td>" .
 
-
-
-              "<td><a href='?action=actualizar&objeto=" . base64_encode(serialize($usuario)) .
+              "<td><a href='?action=actualizarCcosto&objeto=" . base64_encode(serialize($usuario)) .
               "' class='btn btn-warning p-1 my-3'><i class='fas fa-retweet'></i>  Actualizar</a>   &nbsp;&nbsp;" .
-              "<a href='?action=eliminar&id=" . base64_encode($usuario["id"]) .
-              "' class='btn btn-danger p-1 my-3'  onclick='javascript:return asegurar();'><i class='fas fa-trash-alt '></i> Eliminar</a></td>" .
               "</tr>";
             $cont++;
-
-            /*Esto es para acumular cuanto se va gastando por area y comparar con el presupuesto que se tiene*/
-
-            /*Para acumular lo de logistica*/
-
-
-            if (substr($usuario["centro_costo"], 0, 3) == "npl" | substr($usuario["centro_costo"], 0, 3) == "NPL561") {
-
-              $acumuladorlogistica += $usuario["valor_total"];
-              $_SESSION["logisticatotal"] = $acumuladorlogistica;
-            }
-            /* para acumular lo de planta */
-            if (substr($usuario["centro_costo"], 0, 3) == "NPP" | substr($usuario["centro_costo"], 0, 3) == "NPP") {
-
-              $acumuladorplanta += $usuario["valor_total"];
-              $_SESSION["plantatotal"] = $acumuladorplanta;
-            }
-
-            /* para acumular lo de adobo */
-            if (substr($usuario["centro_costo"], 0, 3) == "NPA" | substr($usuario["centro_costo"], 0, 3) == "npa") {
-
-              $acumuladoradobo += $usuario["valor_total"];
-              $_SESSION["adobototal"] = $acumuladoradobo;
-            }
           }
-
           ?>
 
         </tbody>
@@ -172,9 +124,6 @@
 
         <?php
       }
-
-      /*  echo $_SESSION["logisticatotal"]." ";
-      echo $_SESSION["total"]; */
         ?>
   </div>
   <script>
@@ -182,12 +131,6 @@
       rc = confirm("¿Seguro que desea Eliminar?");
       return rc;
     }
-
-    function asegurarTodo() {
-      rt = confirm("¿Seguro que desea eliminar todos los registros?");
-      return rt;
-    }
-
 
     $(document).ready(function() {
       $('#tabla').dataTable({

@@ -75,11 +75,59 @@ class semanaDao extends Conexion
   }
 
 
+  /* -----------INSERTAR UN CENTRO DE COSTO-------------- */
+
+  public function insertarCcosto($centro_costo, $nom_ccosto)
+  {
+    $mensaje = "";
+    try {
+      $conexion = Conexion::conectar();
+      $sql = "INSERT INTO centro_costo(centro_costo, nom_ccosto) VALUES ( :centro_costo , :nom_ccosto);";
+
+      $stmt = $conexion->prepare($sql);
+
+      $stmt->bindParam(":centro_costo", $centro_costo);
+      $stmt->bindParam(":nom_ccosto", $nom_ccosto);
+
+      $stmt->execute();
+      $fila = $stmt->rowCount();
+      $mensaje = "Se guardo con exito!!";
+    } catch (PDOException $e) {
+
+      if (
+        $e->errorInfo[1] == 1062
+      ) {
+        $mensaje = "Ya Existe!!";
+        // duplicate entry, do something else
+      } else {
+        // an error other than duplicate entry occurred
+        echo $e->errorInfo[1];
+      }
+    }
+    return $mensaje;
+  }
+
+
+
+
   /* ----------------LISTA DE SEMANAS ---------------------*/
   public function lista()
   {
     $conexion = Conexion::conectar();
-    $sql = "SELECT * FROM mantenimiento order by id asc;";
+    $sql = "SELECT mantenimiento.id, mantenimiento.fecha, mantenimiento.articulo, mantenimiento.valor_total, 
+    centro_costo.centro_costo, mantenimiento.proveedor, mantenimiento.detalles from mantenimiento inner join centro_costo on centro_costo.id = mantenimiento.centro_costo ;";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+    return $array;
+  }
+
+  /* ----------------LISTA DE CENTROS DE COSTO ---------------------*/
+  public function listaCcosto()
+  {
+    $conexion = Conexion::conectar();
+    $sql = "SELECT * FROM centro_costo order by centro_costo asc;";
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -147,6 +195,34 @@ class semanaDao extends Conexion
     return $mensaje;
   } // fin del metodo       
 
+  /* ---------------ACTUALIZAR CENTRO DE COSTO-------------------------- */
+  public function actualizarCcosto($id, $centro_costo, $nom_ccosto)
+  {
+
+    $mensaje = "";
+    try {
+
+      $conexion = Conexion::conectar();
+      /*  UPDATE `centro_costo` SET `centro_costo` = 'lpp', `nom_ccosto` = 'asdasd' WHERE `centro_costo`.`centro_costo` = 'lpps';  */
+      $sql = "UPDATE centro_costo SET centro_costo=:centro_costo, nom_ccosto=:nom_ccosto where  id=:id ;";
+      $stmt = $conexion->prepare($sql);
+
+      $stmt->bindParam(":id", $id);
+      $stmt->bindParam(":centro_costo", $centro_costo);
+      $stmt->bindParam(":nom_ccosto", $nom_ccosto);
+
+      $stmt->execute();
+      $mensaje = "Se actualizo con exito!!";
+    } // fin de try
+
+    catch (PDOException $e) {
+
+      $mensaje = "Problemas al Actualizar Consulte con el Administrador del Sistema!!";
+    } // fin del catch
+
+    return $mensaje;
+  } // fin del metodo       
+
 
 
   /* ----------------ELIMINAR UNA SEMANA------------------ */
@@ -171,6 +247,7 @@ class semanaDao extends Conexion
     return $mensaje;
   } // fin del metodo eliminarUsuario
 
+  /* ----------------ELIMINAR UNA SEMANAS------------------ */
   public function EliminarTodo()
   {
     $mensaje = "";
@@ -190,6 +267,28 @@ class semanaDao extends Conexion
     return $mensaje;
   } // fin del metodo eliminarUsuario
 
+
+  /* ----------------ELIMINAR CENTRO DE COSTO------------------ */
+
+  public function eliminarCcosto($centro_costo)
+  {
+    $mensaje = "";
+    try {
+
+      $conexion = Conexion::conectar();
+      $sql = "DELETE from centro_costo WHERE centro_costo=:centro_costo;";
+      $stmt = $conexion->prepare($sql);
+      $stmt->bindParam(":centro_costo", $centro_costo);
+      $stmt->execute();
+      $mensaje = "Eliminado con Exito";
+    } // fin del try
+
+    catch (PDOException $e) {
+      $mensaje = "Problemas al Eliminar consulte con el administrador";
+    } // fin del catch
+
+    return $mensaje;
+  } // fin del metodo eliminarUsuario
 
   /*  public function eliminarUsuarios()
   {

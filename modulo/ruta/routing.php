@@ -8,12 +8,15 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == "guardar") {
 
         require_once "guardar.php";
-    } elseif ($_GET['action'] == "mostrarcentros") {
+    } elseif ($_GET['action'] == "mostrarCcosto") {
 
-        require_once "mostrar.centros.php";
+        require_once "mostrarCcosto.php";
     } elseif ($_GET['action'] == "guardarpresupuesto") {
 
         require_once "bienvenida.php";
+    } elseif ($_GET['action'] == "guardarCcosto") {
+
+        require_once "guardarCcosto.php";
     } elseif ($_GET['action'] == "eliminar") {
 
         require_once "eliminar.php";
@@ -23,6 +26,9 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == "actualizar") {
 
         require_once "actualizar.php";
+    } elseif ($_GET['action'] == "actualizarCcosto") {
+
+        require_once "actualizarCcosto.php";
     } elseif ($_GET['action'] == "inicio") {
 
         require_once "mostrar.php";

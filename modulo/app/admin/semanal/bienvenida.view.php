@@ -20,55 +20,7 @@
             <div class="d-flex justify-content-center">
 
 
-                <form action="?action=guardarpresupuesto" method="POST" class="container contenedor-guardar-usuarios  pl-md-5 pt-md-4">
 
-                    <div class="row">
-                        <div class="col-md-11 ">
-
-                            <?php
-                            if (empty($mensaje) == false) {
-
-                                echo "<div class='alert alert-warning alert-dismissible fade show '>
-                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                            " . $mensaje . "</div>";
-                            }
-                            ?>
-
-
-                        </div>
-
-                        <div class="col-md-6">
-
-                            <label>Centro de costo</label>
-                            <input type="text" name="centro_costo" class="form-control p-1 " value="<?php if (isset($centro_costo)) {
-                                                                                                        echo $centro_costo;
-                                                                                                    } ?>">
-                        </div>
-
-                        <div class="col-md-5 mx-md-2">
-
-                            <label>Presupuesto </label>
-                            <input type="number" name="presupuesto" class="form-control p-1" value="<?php if (isset($presupuesto)) {
-                                                                                                        echo $presupuesto;
-                                                                                                    } ?>">
-                        </div>
-
-
-
-
-
-                    </div>
-
-                    <br>
-                    <center>
-                        <button type="submit" name="boton" value="guardar" class="btn btn-primary my-4 p-2 mx-2">
-                            <i class="fas fa-check"></i> Guardar
-                        </button>
-                        <button type="submit" name="boton" value="limpiar" class="btn btn-warning my-2 p-2">
-                            <i class="fas fa-trash"></i> Limpiar
-                        </button>
-                    </center>
-                </form>
 
 
 

@@ -8,25 +8,34 @@ CREATE table usuario(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+CREATE table centro_costo( 
+	id int(5) AUTO_INCREMENT, 
+	centro_costo varchar(50)NOT NULL, 
+	nom_ccosto varchar(255)NOT NULL, 
+	primary key(id) 
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
 
 create table mantenimiento(
     id int(5) AUTO_INCREMENT not null,
     fecha date not null,
     articulo varchar(100) not null,
     valor_total varchar(50) not null,
-    area varchar (24) not null,
+    centro_costo int(5) not null,
     proveedor varchar(100) not null,
     detalles varchar(200),
-    PRIMARY key (id)
-    
+    PRIMARY key (id),
+    INDEX (centro_costo), 
+    FOREIGN KEY(centro_costo) REFERENCES centro_costo(id) ON UPDATE CASCADE ON DELETE CASCADE    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
 
 
 create table presupuesto(
-    centro_costo varchar(5) not null,
+    fecha date not null,
+    centro_costo int(5) not null,
     presupuesto int(20) not null,
-    PRIMARY key (centro_costo)
-    
+    PRIMARY key (fecha),
+   INDEX (centro_costo), 
+    FOREIGN KEY(centro_costo) REFERENCES centro_costo(id) ON UPDATE CASCADE ON DELETE CASCADE    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

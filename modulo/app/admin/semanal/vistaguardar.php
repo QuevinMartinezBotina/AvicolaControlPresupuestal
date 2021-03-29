@@ -73,11 +73,37 @@
 
                         <div class="col-md-7 mr-md-2 ">
 
-                            <label>Centro de Costo</label>
-                            <input type="text" name="centro_costo" class="form-control  p-1" value="<?php if (isset($centro_costo)) {
-                                                                                                        echo $centro_costo;
-                                                                                                    } ?>">
-                            </input>
+                            <label for="">Centro Costo</label>
+                            <select name="centro_costo" class="form-control">
+                                <option value="0">seleccione una categoria</option>
+                                <?php
+
+                                function getConnection()
+                                {
+                                    $user = 'root';
+                                    $pwd = '';
+                                    return new PDO('mysql:host=localhost;dbname=controlpresupuestal', $user, $pwd);
+                                }
+                                $db = getConnection();
+                                $sql = "SELECT id, centro_costo, nom_ccosto FROM centro_costo";
+                                $stmt = $db->prepare($sql);
+                                $stmt->execute();
+                                $filas = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                                foreach ($filas as $i) {
+
+                                ?>
+
+                                    <option value="<?php print($i->id); ?>"><?php print($i->centro_costo . "-" . $i->nom_ccosto); ?></option>
+
+
+                                <?php
+                                }
+
+                                ?>
+
+                            </select>
+                            <br>
                         </div>
 
                         <div class="col-md-4 ">
