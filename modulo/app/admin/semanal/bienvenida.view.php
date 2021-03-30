@@ -29,7 +29,7 @@
         </div>
 
         <div class="row mt-5 d-flex justify-content-center mb-5">
-            <div class="container contenedor-guardar-usuarios  pl-md-5 pt-md-4 col-md-10">
+            <div class="container-fluid contenedor-guardar-usuarios  pl-md-5 pt-md-4 col-md-10">
 
                 <div class="row mb-3 border p-3">
 
@@ -37,17 +37,23 @@
                         <h3 class="text-center">Gastos actuales</h3>
                     </div>
 
-                    <div class="col-md-5 mr-1 ">
-                        <p>Gasto actual de Planta: <?php echo number_format($_SESSION["plantatotal"], 2, ",", "."); ?></p>
+                    <div class="col-md-4 ">
+                        <p>Planta: <?php echo number_format($_SESSION["plantatotal"], 2, ",", "."); ?></p>
                     </div>
 
 
 
 
-                    <div class="col-md-5 mr-1 ">
-                        <p>Gasto actual de Logistica: <?php echo number_format($_SESSION["logisticatotal"], 2, ",", "."); ?></p>
+                    <div class="col-md-4 ">
+                        <p>Logistica: <?php echo number_format($_SESSION["logisticatotal"], 2, ",", "."); ?></p>
 
                     </div>
+
+                    <div class="col-md-4  ">
+                        <p>Adobo: <?php echo number_format($_SESSION["adobototal"], 2, ",", "."); ?></p>
+
+                    </div>
+
 
 
                 </div>
@@ -111,7 +117,7 @@
 
                 <div class="row border  mb-5 p-3">
                     <div class="col-md-12">
-                        <h3 class="text-center mb-4">Control de Presupuesto</h3>
+                        <h3 class="text-center mb-4">Cuanto Queda</h3>
                     </div>
 
                     <dvi class="col-md-4">

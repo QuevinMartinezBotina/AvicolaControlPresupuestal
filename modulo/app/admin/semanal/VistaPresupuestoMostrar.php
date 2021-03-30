@@ -93,6 +93,7 @@
       <table class="table table-striped py-3 table-hover table-borderless " id="tabla">
 
         <thead class="thead-dark ">
+          <th class="py-3 p-1">ID</th>
           <th class="py-3 p-1">Fecha</th>
           <th class="py-3 p-1">Centro de Costo</th>
           <th class="py-3 p-1">Presupuesto</th>
@@ -106,6 +107,7 @@
 
           foreach ($usuarios as $usuario) {
             echo "<tr >" .
+              "<td class=' pt-4 p-1'>" . $usuario["id"] . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["fecha"] . "</td>" .
               "<td class=' pt-4 p-1'>" . $usuario["centro_costo"] . "</td>" .
               "<td class=' pt-4 p-1'>" . number_format($usuario["presupuesto"], 2, ",", ".") . "</td>" .

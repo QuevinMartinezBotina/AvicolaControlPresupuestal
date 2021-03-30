@@ -35,6 +35,9 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == "actualizarCcosto") {
 
         require_once "actualizarCcosto.php";
+    } elseif ($_GET['action'] == "actualizarPresupuesto") {
+
+        require_once "actualizarPresupuesto.php";
     } elseif ($_GET['action'] == "inicio") {
 
         require_once "mostrar.php";

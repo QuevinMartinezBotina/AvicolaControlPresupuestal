@@ -141,7 +141,7 @@ class semanaDao extends Conexion
   public function listaPresupuesto()
   {
     $conexion = Conexion::conectar();
-    $sql = "SELECT presupuesto.fecha, centro_costo.centro_costo, presupuesto.presupuesto  FROM presupuesto
+    $sql = "SELECT presupuesto.id, presupuesto.fecha, centro_costo.centro_costo, presupuesto.presupuesto  FROM presupuesto
     inner join centro_costo on centro_costo.id = presupuesto.centro_costo ;";
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
@@ -211,7 +211,33 @@ class semanaDao extends Conexion
     return $mensaje;
   } // fin del metodo       
 
+  /* ---------------ACTUALIZAR PRESUPUESTO-------------------------- */
+  public function actualizarPresupuesto($id, $fecha, $presupuesto)
+  {
 
+    $mensaje = "";
+    try {
+
+      $conexion = Conexion::conectar();
+      /*  UPDATE `centro_costo` SET `centro_costo` = 'lpp', `nom_ccosto` = 'asdasd' WHERE `centro_costo`.`centro_costo` = 'lpps';  */
+      $sql = "UPDATE presupuesto SET id=:id ,fecha=:fecha, presupuesto=:presupuesto where  id=:id ;";
+      $stmt = $conexion->prepare($sql);
+
+      $stmt->bindParam(":id", $id);
+      $stmt->bindParam(":fecha", $fecha);
+      $stmt->bindParam(":presupuesto", $presupuesto);
+
+      $stmt->execute();
+      $mensaje = "Se actualizo con exito!!";
+    } // fin de try
+
+    catch (PDOException $e) {
+
+      $mensaje = "Problemas al Actualizar Consulte con el Administrador del Sistema!!";
+    } // fin del catch
+
+    return $mensaje;
+  } // fin del metodo   
 
   /* ----------------ELIMINAR UNA SEMANA------------------ */
 

@@ -31,10 +31,11 @@ create table mantenimiento(
 
 
 create table presupuesto(
+    id int(5) AUTO_INCREMENT not null,
     fecha date not null,
     centro_costo int(5) not null,
     presupuesto int(20) not null,
-    PRIMARY key (fecha),
+    PRIMARY key (id),
    INDEX (centro_costo), 
     FOREIGN KEY(centro_costo) REFERENCES centro_costo(id) ON UPDATE CASCADE ON DELETE CASCADE    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
