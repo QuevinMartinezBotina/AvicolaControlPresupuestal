@@ -124,8 +124,35 @@
 
 
                         <p>Planta: <?php
+                                    /*Aqui hacemos la resta para saber si estamos gastando mas de lo que presupuestado  */
                                     $controlPresupuestoPlanta = $_SESSION["presupuestoPlanta"] - $_SESSION["plantatotal"];
-                                    echo number_format($controlPresupuestoPlanta, 2, ",", "."); ?></p>
+                                    echo number_format($controlPresupuestoPlanta, 2, ",", ".");
+
+                                    /* Aquí hacemos la verificación de si se paso del presupuesto para poder enviar un correo avisando de esto*/
+
+
+
+                                    if ($_SESSION["plantatotal"] > $_SESSION["presupuestoPlanta"]) {
+                                        /* header("location:http://localhost/ControlPresupuestal/modulo/app/correo.php"); */
+                                        /* header('location:mostrar.php'); */
+
+                                        $comprobanteEnvioCorreo = 0;
+                                        $_SESSION["comprobanteCambioTotal"] = 0;
+
+                                        if ($_SESSION["plantatotal"] > $_SESSION["comprobanteCambioTotal"]) {
+
+                                            $dao = new semanaDao();
+                                            $Ccosto = $dao->listaCcosto();
+                                            $tam = sizeof($Ccosto);
+
+                                            /* require '../../correo.php'; */
+                                            $_SESSION["comprobanteCambioTotal"] = $_SESSION["plantatotal"];
+                                            echo "     " . $_SESSION["comprobanteCambioTotal"];
+                                        }
+                                    }
+
+                                    ?></p>
+
 
                     </dvi>
 

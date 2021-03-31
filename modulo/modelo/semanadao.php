@@ -108,6 +108,40 @@ class semanaDao extends Conexion
     return $mensaje;
   }
 
+  /* -----------INSERTAR UN CENTRO DE COSTO-------------- */
+
+  public function insertarControlCorreo($sum_gastos, $centro_costo, $fecha)
+  {
+    $mensaje = "";
+    try {
+      $conexion = Conexion::conectar();
+      $sql = "INSERT INTO control_correos (sum_gastos, centro_costo,fecha) VALUES ( :sum_gastos , :centro_costo, :fecha);";
+
+      $stmt = $conexion->prepare($sql);
+
+      $stmt->bindParam(":sum_gastos", $sum_gastos);
+      $stmt->bindParam(":centro_costo", $centro_costo);
+      $stmt->bindParam(":fecha", $fecha);
+
+      $stmt->execute();
+      $fila = $stmt->rowCount();
+      $mensaje = "Se guardo con exito!!";
+    } catch (PDOException $e) {
+
+      if (
+        $e->errorInfo[1] == 1062
+      ) {
+        $mensaje = "Ya Existe!!";
+        // duplicate entry, do something else
+      } else {
+        // an error other than duplicate entry occurred
+        echo $e->errorInfo[1];
+      }
+    }
+    return $mensaje;
+  }
+
+
 
 
 

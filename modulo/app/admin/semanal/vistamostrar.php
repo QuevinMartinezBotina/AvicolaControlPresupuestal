@@ -93,7 +93,8 @@
         </a>
 
 
-
+        <?php
+        echo $_SESSION["comprobanteCambioTotal"]; ?>
 
       </div>
       <table class="table table-striped py-3 table-hover table-borderless " id="tabla">
