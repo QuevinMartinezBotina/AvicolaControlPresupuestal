@@ -128,30 +128,72 @@
                                     $controlPresupuestoPlanta = $_SESSION["presupuestoPlanta"] - $_SESSION["plantatotal"];
                                     echo number_format($controlPresupuestoPlanta, 2, ",", ".");
 
-                                    /* Aquí hacemos la verificación de si se paso del presupuesto para poder enviar un correo avisando de esto*/
-
-
-
-                                    if ($_SESSION["plantatotal"] > $_SESSION["presupuestoPlanta"]) {
-                                        /* header("location:http://localhost/ControlPresupuestal/modulo/app/correo.php"); */
-                                        /* header('location:mostrar.php'); */
-
-                                        $comprobanteEnvioCorreo = 0;
-                                        $_SESSION["comprobanteCambioTotal"] = 0;
-
-                                        if ($_SESSION["plantatotal"] > $_SESSION["comprobanteCambioTotal"]) {
-
-                                            $dao = new semanaDao();
-                                            $Ccosto = $dao->listaCcosto();
-                                            $tam = sizeof($Ccosto);
-
-                                            /* require '../../correo.php'; */
-                                            $_SESSION["comprobanteCambioTotal"] = $_SESSION["plantatotal"];
-                                            echo "     " . $_SESSION["comprobanteCambioTotal"];
-                                        }
-                                    }
-
                                     ?></p>
+
+                        <?php
+                        /* Apartado de los correos */
+
+                        /* Para planta */
+                        $listaControlCorreos = new semanaDao();
+
+                        $ListaCorreos = $listaControlCorreos->listaControlCorreos();
+
+                        $fecha = getdate();
+
+                        /*   print_r($fecha); */
+
+                        $fechaActual = $fecha['year'] . "-" . $fecha['mon'] . "-" . $fecha['mday'];
+
+
+
+                        /*  $insertar = new semanaDao();
+                        $insertarGastos = $insertar->insertarControlCorreo($_SESSION['plantatotal'], '1', $fechaCompleta); */
+
+
+                        foreach ($ListaCorreos as $correo) {
+
+                            /*   $correo['id'] = '0'; */
+
+                            /*    if ($correo['id'] == '0') {
+                                echo "no hay nada sadasd";
+
+                                $insertar = new semanaDao();
+                                $insertarGastos = $insertar->insertarControlCorreo($_SESSION['plantatotal'], '1', $fechaCompleta);
+
+                                $correo['id'] = $correo['id'];
+                            } */
+                            if (substr($correo["centro_costo"], 0, 3) == "1") {/* Determinamos de que centro de costo se trata */
+
+                                /* Aqui declaramos las variables que vamso a utilzar del centro de costo correspondiente */
+                                $id = $correo["id"];
+                                $sum_gastos = $correo["sum_gastos"];
+                                $centro_costo = $correo["centro_costo"];
+                                $fechabaseDatos = $correo["fecha"];
+
+                                /*   $idControlCorreo . "<br>sum gasos " . $sum_gastos . " " . $centro_costo . " " . $fecha; */
+
+                                echo "Total planta: " . $_SESSION['plantatotal'] . " suma gastos: " . $sum_gastos;
+                                /* Lueog pasamso a hacer condicionales para determinar si enviamos correo o no */
+                                if ($sum_gastos > $_SESSION['presupuestoPlanta']) {
+                                    echo "<br>Usted entro a apartaod dodne gastos es mayor a presupusto " . " " . $sum_gastos . " " . $_SESSION['presupuestoPlanta'];
+                                    if ($_SESSION['plantatotal'] > $sum_gastos) {
+                                        echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
+                                        require_once '../../correo.php';
+
+                                        $sum_gastos = $_SESSION["plantatotal"];
+
+                                        $actulizarControlCorreo = new semanaDao();
+
+                                        $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
+                                    } else if ($sum_gastos = $_SESSION['plantatotal']) {
+                                        echo  "<br>Usted entro al apartado dodne gastaos de tabla es igual a gastos actuales<br>";
+                                    }
+                                }
+                            }
+                        }
+
+
+                        ?>
 
 
                     </dvi>

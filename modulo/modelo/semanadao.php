@@ -108,14 +108,14 @@ class semanaDao extends Conexion
     return $mensaje;
   }
 
-  /* -----------INSERTAR UN CENTRO DE COSTO-------------- */
+  /* -----------INSERTAR UN CONTROL DE CORREO-------------- */
 
   public function insertarControlCorreo($sum_gastos, $centro_costo, $fecha)
   {
     $mensaje = "";
     try {
       $conexion = Conexion::conectar();
-      $sql = "INSERT INTO control_correos (sum_gastos, centro_costo,fecha) VALUES ( :sum_gastos , :centro_costo, :fecha);";
+      $sql = "INSERT INTO control_correos (sum_gastos, centro_costo,fecha) VALUES ( :sum_gastos , :centro_costo, :fecha); WHere centro_costo = '1' ";
 
       $stmt = $conexion->prepare($sql);
 
@@ -183,6 +183,21 @@ class semanaDao extends Conexion
     $stmt = null;
     return $array;
   }
+
+  /* ----------------LISTA CONTROL CORREOS ---------------------*/
+  public function listaControlCorreos()
+  {
+    $conexion = $this->conectar();
+    $sql = /* "SELECT control_correos.id, control_correos.sum_gastos , centro_costo.centro_costo, control_correos.fecha   FROM control_correos
+    inner join centro_costo on centro_costo.id = presupuesto.centro_costo ;"; */
+      "SELECT * FROM control_correos";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+    return $array;
+  }
+
 
 
 
@@ -272,6 +287,35 @@ class semanaDao extends Conexion
 
     return $mensaje;
   } // fin del metodo   
+
+  /* ---------------ACTUALIZAR CONTROL DE CORREOS-------------------------- */
+  public function actualizarControlCorreos($id, $sum_gastos, $fechaActual)
+  {
+
+    $mensaje = "";
+    try {
+
+      $conexion = Conexion::conectar();
+      /*  UPDATE `centro_costo` SET `centro_costo` = 'lpp', `nom_ccosto` = 'asdasd' WHERE `centro_costo`.`centro_costo` = 'lpps';  */
+      $sql = "UPDATE control_correos SET sum_gastos=:sum_gastos , fecha=:fecha where  id=:id ;";
+      /*    UPDATE `control_correos` SET `sum_gastos` = '1000', `centro_costo` = '3', `fecha` = '2013-08-08' WHERE `control_correos`.`id` = 8;  */
+      $stmt = $conexion->prepare($sql);
+
+      $stmt->bindParam(":id", $id);
+      $stmt->bindParam(":sum_gastos", $sum_gastos);
+      $stmt->bindParam(":fecha", $fechaActual);
+
+      $stmt->execute();
+      $mensaje = "Se actualizo con exito!!";
+    } // fin de try
+
+    catch (PDOException $e) {
+
+      $mensaje = "Problemas al Actualizar Consulte con el Administrador del Sistema!!";
+    } // fin del catch
+
+    return $mensaje;
+  } // fin del metodo  
 
   /* ----------------ELIMINAR UNA SEMANA------------------ */
 

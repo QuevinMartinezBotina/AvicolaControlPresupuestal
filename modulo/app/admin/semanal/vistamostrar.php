@@ -89,12 +89,7 @@
       <div class="row">
         <a href="../../excel.php" class="btn btn-success p-1 col-md-2 shadow-sm m-1"><i class="fas fa-file-excel fa-2x"> </i> Generar Excel</a>
         <a href="../../pdf.php" class="btn btn-danger p-1 col-md-2 shadow-sm m-1"><i class="fas fa-file-pdf fa-2x"> </i> Generar PDF</a>
-        <a href="?action=eliminarTodo" class="btn btn-danger p-1 col-md-2 shadow-sm m-1" onclick='javascript:return asegurarTodo();'> <i class='fas fa-trash-alt fa-2x'></i> Eliminar Todo</a> </td>
-        </a>
-
-
-        <?php
-        echo $_SESSION["comprobanteCambioTotal"]; ?>
+        <a href="?action=eliminarTodo" class="btn btn-danger p-1 col-md-2 shadow-sm m-1" onclick='javascript:return asegurarTodo();'> <i class='fas fa-trash-alt fa-2x'></i> Eliminar Todo</a> </td></a>
 
       </div>
       <table class="table table-striped py-3 table-hover table-borderless " id="tabla">
@@ -150,7 +145,7 @@
               $_SESSION["logisticatotal"] = $acumuladorlogistica;
             }
             /* para acumular lo de planta */
-            if (substr($usuario["centro_costo"], 0, 3) == "NPP" | substr($usuario["centro_costo"], 0, 3) == "NPP") {
+            if (substr($usuario["centro_costo"], 0, 3) == "NPP" | substr($usuario["centro_costo"], 0, 3) == "npp") {
 
               $acumuladorplanta += $usuario["valor_total"];
               $_SESSION["plantatotal"] = $acumuladorplanta;

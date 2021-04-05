@@ -27,7 +27,6 @@ if (isset($_POST['boton'])) {
                 $mensaje = "Campo Vacio";
             } else {
 
-
                 $mensaje = $dao->insertarPresupuesto($centro_costo, $presupuesto);
             }
         }
@@ -38,7 +37,5 @@ if (isset($_POST['boton'])) {
         $presupuesto = "";
     }
 }
-
-
 
 require_once 'bienvenida.view.php';
