@@ -111,6 +111,7 @@
 
           $acumuladorlogistica = 0;
           $acumuladorplanta = 0;
+          $acumuladoradobo = 0;
           $_SESSION["plantatotal"] = 0;
           $_SESSION["logisticatotal"] = 0;
           $_SESSION["adobototal"] = 0;
@@ -139,7 +140,7 @@
             /*Para acumular lo de logistica*/
 
 
-            if (substr($usuario["centro_costo"], 0, 3) == "npl" | substr($usuario["centro_costo"], 0, 3) == "NPL561") {
+            if (substr($usuario["centro_costo"], 0, 3) == "npl" | substr($usuario["centro_costo"], 0, 3) == "NPL") {
 
               $acumuladorlogistica += $usuario["valor_total"];
               $_SESSION["logisticatotal"] = $acumuladorlogistica;

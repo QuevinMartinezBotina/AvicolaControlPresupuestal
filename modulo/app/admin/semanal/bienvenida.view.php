@@ -31,6 +31,9 @@
         <div class="row mt-5 d-flex justify-content-center mb-5">
             <div class="container-fluid contenedor-guardar-usuarios  pl-md-5 pt-md-4 col-md-10">
 
+                <!-- <div class="col-md-12  ">
+                    <a href="nuevomes.php" class="btn btn-success p-2 m-1">Nuevo mes</a>
+                </div> -->
                 <div class="row mb-3 border p-3">
 
                     <div class="col-12 my-3">
@@ -128,6 +131,7 @@
                                     $controlPresupuestoPlanta = $_SESSION["presupuestoPlanta"] - $_SESSION["plantatotal"];
                                     echo number_format($controlPresupuestoPlanta, 2, ",", ".");
 
+                                    $_SESSION['excesoPlanta'] = $controlPresupuestoPlanta;
                                     ?></p>
 
                         <?php
@@ -146,23 +150,17 @@
 
 
 
-                        /*  $insertar = new semanaDao();
-                        $insertarGastos = $insertar->insertarControlCorreo($_SESSION['plantatotal'], '1', $fechaCompleta); */
+                        /*   $insertar = new semanaDao();
+                        $insertarGastos = $insertar->insertarControlCorreo($_SESSION['plantatotal'], '1', $fechaActual);
+                        $insertarGastos = $insertar->insertarControlCorreo($_SESSION['logisticatotal'], '2', $fechaActual);
+                        $insertarGastos = $insertar->insertarControlCorreo($_SESSION['adobototal'], '3', $fechaActual); */
 
 
                         foreach ($ListaCorreos as $correo) {
 
-                            /*   $correo['id'] = '0'; */
+                            /* ESTO ES PARA LOS CORREOS DE PLANTA */
 
-                            /*    if ($correo['id'] == '0') {
-                                echo "no hay nada sadasd";
-
-                                $insertar = new semanaDao();
-                                $insertarGastos = $insertar->insertarControlCorreo($_SESSION['plantatotal'], '1', $fechaCompleta);
-
-                                $correo['id'] = $correo['id'];
-                            } */
-                            if (substr($correo["centro_costo"], 0, 3) == "1") {/* Determinamos de que centro de costo se trata */
+                            if (substr($correo["centro_costo"], 0, 3) == "1" & substr($correo['fecha'], 5, 2) == $fecha['mon']) {/* Determinamos de que centro de costo se trata */
 
                                 /* Aqui declaramos las variables que vamso a utilzar del centro de costo correspondiente */
                                 $id = $correo["id"];
@@ -170,15 +168,24 @@
                                 $centro_costo = $correo["centro_costo"];
                                 $fechabaseDatos = $correo["fecha"];
 
-                                /*   $idControlCorreo . "<br>sum gasos " . $sum_gastos . " " . $centro_costo . " " . $fecha; */
-
-                                echo "Total planta: " . $_SESSION['plantatotal'] . " suma gastos: " . $sum_gastos;
                                 /* Lueog pasamso a hacer condicionales para determinar si enviamos correo o no */
-                                if ($sum_gastos > $_SESSION['presupuestoPlanta']) {
+                                if ($sum_gastos < $_SESSION['presupuestoPlanta']) {
+
+
+                                    $sum_gastos = $_SESSION["plantatotal"];
+
+                                    $actulizarControlCorreo = new semanaDao();
+
+                                    $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
+                                } else if ($sum_gastos > $_SESSION['presupuestoPlanta']) {
                                     echo "<br>Usted entro a apartaod dodne gastos es mayor a presupusto " . " " . $sum_gastos . " " . $_SESSION['presupuestoPlanta'];
+
+                                    echo "holi";
+
+
                                     if ($_SESSION['plantatotal'] > $sum_gastos) {
                                         echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
-                                        require_once '../../correo.php';
+                                        require_once '../../correoPlanta.php';
 
                                         $sum_gastos = $_SESSION["plantatotal"];
 
@@ -186,11 +193,12 @@
 
                                         $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
                                     } else if ($sum_gastos = $_SESSION['plantatotal']) {
-                                        echo  "<br>Usted entro al apartado dodne gastaos de tabla es igual a gastos actuales<br>";
                                     }
                                 }
+                                /* ESTO ES PARA LOS CORREOS DE LOGISTICA */
                             }
                         }
+
 
 
                         ?>
@@ -202,8 +210,57 @@
 
 
                         <p>Logistica: <?php
-                                        $controlPresupuestoPlanta = $_SESSION["presupuestoLogistica"] - $_SESSION["logisticatotal"];
-                                        echo number_format($controlPresupuestoPlanta, 2, ",", "."); ?></p>
+                                        $controlPresupuestoLogistica = $_SESSION["presupuestoLogistica"] - $_SESSION["logisticatotal"];
+                                        echo number_format($controlPresupuestoLogistica, 2, ",", ".");
+                                        $_SESSION['excesoLogistica'] = $controlPresupuestoLogistica; ?></p>
+
+
+
+                        <?php
+
+                        foreach ($ListaCorreos as $correo) {
+
+                            /* ESTO ES PARA LOS CORREOS DE ADOBO */
+
+                            if (substr($correo["centro_costo"], 0, 3) == "2" & substr($correo['fecha'], 5, 2) == $fecha['mon']) {/* Determinamos de que centro de costo se trata */
+
+                                /* Aqui declaramos las variables que vamso a utilzar del centro de costo correspondiente */
+                                $id = $correo["id"];
+                                $sum_gastos = $correo["sum_gastos"];
+                                $centro_costo = $correo["centro_costo"];
+                                $fechabaseDatos = $correo["fecha"];
+
+                                /* Lueog pasamso a hacer condicionales para determinar si enviamos correo o no */
+                                if ($sum_gastos < $_SESSION['presupuestoLogistica']) {
+
+
+                                    $sum_gastos = $_SESSION["logisticatotal"];
+
+                                    $actulizarControlCorreo = new semanaDao();
+
+                                    $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
+                                } else if ($sum_gastos > $_SESSION['presupuestoLogistica']) {
+
+
+
+                                    if ($_SESSION['logisticatotal'] > $sum_gastos) {
+                                        echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
+                                        require_once '../../correoLogistica.php';
+
+                                        $sum_gastos = $_SESSION["logisticatotal"];
+
+                                        $actulizarControlCorreo = new semanaDao();
+
+                                        $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
+                                    } else if ($sum_gastos = $_SESSION['logisticatotal']) {
+                                        echo "todo igual";
+                                    }
+                                }
+                                /* ESTO ES PARA LOS CORREOS DE LOGISTICA */
+                            }
+                        }
+
+                        ?>
 
                     </dvi>
 
@@ -211,9 +268,52 @@
 
                         <p>Adobo: <?php
                                     $controlPresupuestoAdobo = $_SESSION["presupuestoAdobo"] - $_SESSION["adobototal"];
-                                    echo number_format($controlPresupuestoAdobo, 2, ",", "."); ?></p>
+                                    echo number_format($controlPresupuestoAdobo, 2, ",", ".");
+                                    $_SESSION['excesoAdobo'] = $controlPresupuestoAdobo; ?></p>
+
+                        <?php
+                        foreach ($ListaCorreos as $correo) {
+                            /* ESTO ES PARA LOS CORREOS DE LOGISTICA */
+
+                            if (substr($correo["centro_costo"], 0, 3) == "3" & substr($correo['fecha'], 5, 2) == $fecha['mon']) {/* Determinamos de que centro de costo se trata */
+
+                                /* Aqui declaramos las variables que vamso a utilzar del centro de costo correspondiente */
+                                $id = $correo["id"];
+                                $sum_gastos = $correo["sum_gastos"];
+                                $centro_costo = $correo["centro_costo"];
+                                $fechabaseDatos = $correo["fecha"];
+
+                                /* Lueog pasamso a hacer condicionales para determinar si enviamos correo o no */
+                                if ($sum_gastos < $_SESSION['presupuestoAdobo']) {
 
 
+                                    $sum_gastos = $_SESSION["adobototal"];
+
+                                    $actulizarControlCorreoAdobo = new semanaDao();
+
+                                    $actualizarAdobo = $actulizarControlCorreoAdobo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
+                                } else if ($sum_gastos > $_SESSION['presupuestoAdobo']) {
+
+
+
+                                    if ($_SESSION['adobototal'] > $sum_gastos) {
+                                        echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
+                                        require_once '../../correoAdobo.php';
+
+                                        $sum_gastos = $_SESSION["adobototal"];
+
+                                        $actulizarControlCorreo = new semanaDao();
+
+                                        $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
+                                        echo "holi ";
+                                    } else if ($sum_gastos = $_SESSION['adobototal']) {
+                                        echo "todo igual";
+                                    }
+                                }
+                                /* ESTO ES PARA LOS CORREOS DE LOGISTICA */
+                            }
+                        }
+                        ?>
 
                     </dvi>
 

@@ -25,15 +25,16 @@ try {
     $mail->setFrom('reportesavicolamadrono@gmail.com'/* , 'Quevin Martinez' */);
     $mail->addAddress('reportesavicolamadrono@gmail.com');
     /* $mail->addCC('[email recipient with hide copy]'); */
-    $area = "NPP561";
+    $area = "<b>Planta</b>";
     $presupuesto = 2000000;
     $gastoActual = 3000000;
 
     $mail->IsHTML(true);
     $mail->Subject  = "Reporte de exceso de Gasto";
-    $mail->Body =  "<h1 style='color:red;'>Area Administración</h1><br>
+    $mail->Body =  "<h1 style='color:red;'>Area Mantenimiento</h1><br>
                     <p>El Centro de costo " . $area . " acaba de superar el presupuesto de " . "$" . number_format($_SESSION["presupuestoPlanta"], 2, ",", ".") .
-        " con un gasto actual de " . "$" . number_format($_SESSION["plantatotal"], 2, ",", ".")  . " </p>";
+        " con un gasto actual de " . "$" . number_format($_SESSION["plantatotal"], 2, ",", ".")  . " dejando un exceso de: "
+        . " $" .  number_format($_SESSION["excesoPlanta"], 2, ",", ".") . " </p>";
 
     /**/
     $mail->send();
