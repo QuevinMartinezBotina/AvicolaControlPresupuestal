@@ -178,13 +178,13 @@
 
                                     $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
                                 } else if ($sum_gastos > $_SESSION['presupuestoPlanta']) {
-                                    echo "<br>Usted entro a apartaod dodne gastos es mayor a presupusto " . " " . $sum_gastos . " " . $_SESSION['presupuestoPlanta'];
+                                    /* echo "<br>Usted entro a apartaod dodne gastos es mayor a presupusto " . " " . $sum_gastos . " " . $_SESSION['presupuestoPlanta'];
 
-                                    echo "holi";
+                                    echo "holi"; */
 
 
                                     if ($_SESSION['plantatotal'] > $sum_gastos) {
-                                        echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
+                                        /*  echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla"; */
                                         require_once '../../correoPlanta.php';
 
                                         $sum_gastos = $_SESSION["plantatotal"];
@@ -244,7 +244,6 @@
 
 
                                     if ($_SESSION['logisticatotal'] > $sum_gastos) {
-                                        echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
                                         require_once '../../correoLogistica.php';
 
                                         $sum_gastos = $_SESSION["logisticatotal"];
@@ -253,7 +252,6 @@
 
                                         $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
                                     } else if ($sum_gastos = $_SESSION['logisticatotal']) {
-                                        echo "todo igual";
                                     }
                                 }
                                 /* ESTO ES PARA LOS CORREOS DE LOGISTICA */
@@ -297,7 +295,6 @@
 
 
                                     if ($_SESSION['adobototal'] > $sum_gastos) {
-                                        echo "<br> Usted entro al apartado donde el gasto actuAL es mayor al gasto en tabla";
                                         require_once '../../correoAdobo.php';
 
                                         $sum_gastos = $_SESSION["adobototal"];
@@ -305,9 +302,7 @@
                                         $actulizarControlCorreo = new semanaDao();
 
                                         $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
-                                        echo "holi ";
                                     } else if ($sum_gastos = $_SESSION['adobototal']) {
-                                        echo "todo igual";
                                     }
                                 }
                                 /* ESTO ES PARA LOS CORREOS DE LOGISTICA */

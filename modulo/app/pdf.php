@@ -54,7 +54,7 @@ $pdf->SetFont('Arial', 'B', 7);
 while ($row = $resultado->fetch_assoc()) {
     $pdf->Cell(15, 10, $row['fecha'], 1, 0, 'C', 0);
     $pdf->Cell(50, 10, $row['articulo'], 1, 0, 'C', 0);
-    $pdf->Cell(20, 10, $row['valor_total'], 1, 0, 'C', 0);
+    $pdf->Cell(20, 10, number_format($row['valor_total'], 2, ",", "."), 1, 0, 'C', 0);
     $pdf->Cell(25, 10, $row['centro_costo'], 1, 0, 'C', 0);
     $pdf->Cell(33, 10,  utf8_decode($row['proveedor']), 1, 0, 'C', 0);
     $pdf->Cell(55, 10,  utf8_decode($row['detalles']), 1, 1, 'C', 0);

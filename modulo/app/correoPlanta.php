@@ -41,7 +41,7 @@ try {
 
     //**//
 
-    echo "Enviado correctamnete";
+    /* echo "Enviado correctamnete"; */
 } catch (Exception $exception) {
     // HANDLE 
     echo "Error al enviar";
