@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		$codigoacceso = $_POST['codigoacceso'];
 
-		if ($codigoacceso == 123) {
+		if ($codigoacceso == 1871158) {
 			header("location:registrate.php");
 		} else {
 			$errores .= '<li>Codigo no valido</li>';

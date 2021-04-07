@@ -24,6 +24,20 @@ try {
 
     $mail->setFrom('reportesavicolamadrono@gmail.com'/* , 'Quevin Martinez' */);
     $mail->addAddress('reportesavicolamadrono@gmail.com');
+    /*  $mail->addAddress('Jaime.fontalvo@avicolaelmadrono.com'); */
+
+    /* Correos d epersonas a las que les llega reportes */
+    /*  $mail->addAddress('loren.padilla@avicolaelmadrono.com');
+    $mail->addAddress('martha.rivera@avicolaelmadrono.com');
+    $mail->addAddress('planta.cartagena@avicolaelmadrono.com');
+    $mail->addAddress('sismary.babilonia@avicolaelmadrono.com');
+    $mail->addAddress('camila.vergara@avicolaelmadrono.com');
+    $mail->addAddress('irma.rodriguez@avicolaelmadrono.com');
+    $mail->addAddress('felix.causil@avicolaelmadrono.com');
+    $mail->addAddress('ernesto.rios@avicolaelmadrono.com');
+    $mail->addAddress('pablo.vergara@avicolaelmadrono.com');
+    $mail->addAddress('maryl.martinez@avicolaelmadrono.com');
+    $mail->addAddress('david.delahoz@avicolaelmadrono.com'); */
     /* $mail->addCC('[email recipient with hide copy]'); */
     $area = "<b>Adobo</b>";
 

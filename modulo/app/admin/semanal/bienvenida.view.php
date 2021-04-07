@@ -179,7 +179,7 @@
                                     $actualizar = $actulizarControlCorreo->actualizarControlCorreos($id, $sum_gastos, $fechaActual);
                                 } else if ($sum_gastos > $_SESSION['presupuestoPlanta']) {
                                     /* echo "<br>Usted entro a apartaod dodne gastos es mayor a presupusto " . " " . $sum_gastos . " " . $_SESSION['presupuestoPlanta'];
-
+                                    
                                     echo "holi"; */
 
 
